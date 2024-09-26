@@ -40,6 +40,11 @@ extension AWSMobileClient {
         default:
             break
         }
+        if !password.isEmpty {
+            self.userPoolClient?.isCustomAuth = false
+        } else {
+            self.userPoolClient?.isCustomAuth = true
+        }
         self.userpoolOpsHelper.userpoolClient?.delegate = self.userpoolOpsHelper
         self.userpoolOpsHelper.authHelperDelegate = self
         let user = self.userPoolClient?.getUser(username)
